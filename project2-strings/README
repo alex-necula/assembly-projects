@@ -1,0 +1,58 @@
+# Tema 2 IOCLA - strings
+
+## Necula Alexandru - 322CD
+
+### Task 1 - OTP
+
+- Using a `loop` instruction, we iterate through the characters of the `plaintext`
+  string
+- Characters from `plaintext` are stored in `AL` register
+- Characters from `key` are stored in `BL` register
+- We apply xor on each character
+
+### Task 2 - Caesar
+
+- Using a `loop` instruction, we iterate through the characters of the
+  `plaintext` string
+- Characters from `plaintext` are stored in `AL` register
+- Using a `cmp` instruction we check if the character is a letter or not
+- There is another nested loop for encrypting the character, incrementing it one
+  by one until it reaches the `key` count
+- Corner cases of letters `z` and `Z` are taken into consideration
+
+### Task 3 - Vigenere
+
+- Characters from `plaintext` are stored in `AL` register
+- We use the `AH` register to store the index of the character from `key` and
+  the `BH` register for the index of the character from `plaintext`
+- We iterate through the characters of both `key` and `plaintext` using a `cmp`
+  instruction and a `jl` instruction
+- Using a `cmp` instruction we check if the character from `plaintext` is a
+  letter or not
+- When we reach the end of the key, we reset the index stored in `AH` to 0
+- We increment the character similarly to Caesar
+
+### Task 4 - StrStr
+
+- We use the `CH` register to store the index of the character from `needle` and
+  the `DH` register for the index of the character from `haystack`
+- For comparison, we store the character from `haystack` in the `AL` register
+  and the character from `needle` in the `AH` register
+- We iterate over the `haystack` string and compare each character with the
+  first character of `needle`. If they match, we compare the next character
+  in `needle` with the next character in `haystack`. Otherwise, we repeat
+  the process for the next character in `haystack` until the end
+
+### Task 5 - Binary to Hexadecimal
+
+- We use `xlat` instruction to convert from binary to hexadecimal
+- The table is stored in the `.data` section and moved to `EBX` register
+- Starting from the end, we iterate over `bin_sequence`, copying 4 bits
+  into `AL` register, then we use `xlat` instruction to convert to hexa
+- The stack is used to store the individual hexa characters
+- We use `CH` register to store nibble count
+
+### Homework feedback
+
+- Good introduction to assembly
+- Statement contains all the necessary information
